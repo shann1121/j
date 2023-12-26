@@ -37,6 +37,8 @@
     }
   },
   "commandUnload": [
-    "prodia.js"
+    "prodia.js",
+    "ai.js",
+    "gpt.js"
   ]
 }

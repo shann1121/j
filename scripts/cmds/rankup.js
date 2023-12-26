@@ -5,8 +5,8 @@ const { drive } = global.utils;
 module.exports = {
 	config: {
 		name: "rankup",
-		version: "1.2",
-		author: "NTKhang",
+		version: "1.2 + 1",
+		author: "NTKhang || Liane",
 		countDown: 5,
 		role: 0,
 		shortDescription: {
@@ -28,16 +28,16 @@ module.exports = {
 
 	langs: {
 		vi: {
-			syntaxError: "Sai cú pháp, chỉ có thể dùng {pn} on hoặc {pn} off",
-			turnedOn: "Đã bật thông báo level up",
-			turnedOff: "Đã tắt thông báo level up",
-			notiMessage: "🎉🎉 chúc mừng bạn đạt level %1"
+			syntaxError: "❌ | Sai cú pháp, chỉ có thể dùng {pn} on hoặc {pn} off",
+			turnedOn: "✅ | Đã bật thông báo level up",
+			turnedOff: "✅ | Đã tắt thông báo level up",
+			notiMessage: "🎉🎉 %2 chúc mừng bạn đạt level %1!"
 		},
 		en: {
-			syntaxError: "Syntax error, only use {pn} on or {pn} off",
-			turnedOn: "Turned on level up notification",
-			turnedOff: "Turned off level up notification",
-			notiMessage: "🎉🎉 Congratulations on reaching level %1"
+			syntaxError: "❌ | Syntax error, only use {pn} on or {pn} off",
+			turnedOn: "✅ | Turned on level up notification",
+			turnedOff: "✅ | Turned off level up notification",
+			notiMessage: "🎉🎉 Congratulations %2 on reaching level %1!"
 		}
 	},
 
@@ -53,11 +53,11 @@ module.exports = {
 		const sendRankupMessage = threadData.settings.sendRankupMessage;
 		if (!sendRankupMessage)
 			return;
-		const { exp } = await usersData.get(event.senderID);
+		const { exp, name } = await usersData.get(event.senderID);
 		const currentLevel = expToLevel(exp);
 		if (currentLevel > expToLevel(exp - 1)) {
 			const forMessage = {
-				body: getLang("notiMessage", currentLevel)
+				body: getLang("notiMessage", currentLevel, name)
 			};
 			if (threadData.data.rankup?.attachments?.length > 0) {
 				const files = threadData.data.rankup.attachments;
@@ -70,6 +70,8 @@ module.exports = {
 					.map(({ value }) => value);
 			}
 			message.reply(forMessage);
+      message.reaction("🎉");
+
 		}
 	}
 };

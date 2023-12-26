@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const Prefixes = ['chesca'];
+const Prefixes = ['chesca', 'ches'];
 module.exports = {
   config: {
     name: 'chesca',
@@ -42,7 +42,7 @@ module.exports = {
       }
 
 
-        const response = await axios.get(`https://school-project-lianefca.bene-edu-ph.repl.co/` + `ask/chesca?query=${encodeURIComponent(prompt)}`); // added closing parenthesis here
+        const response = await axios.get(`https://lianeapi.onrender.com/ask/chescaV2?query=${encodeURIComponent(prompt)}`); // added closing parenthesis here
 
         if (response.data) {
           const messageText = response.data.message;

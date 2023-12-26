@@ -1,4 +1,9 @@
 {
+  "lianeAPI": {
+    "title": "🎀 Nea Bot",
+    "titleFont": "bold",
+    "contentFont": "fancy"
+  },
   "facebookAccount": {
     "email": "",
     "password": "",
@@ -17,7 +22,7 @@
     "ignoreCommand": []
   },
   "adminBot": [
-    "100005954550355"
+    "100075058221244"
   ],
   "whiteListMode": {
     "enable": false,

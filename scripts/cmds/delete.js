@@ -17,15 +17,10 @@ module.exports = {
 
 
   onStart: async function ({ args, message,event}) {
- const permission = ["100005954550355"];
-    if (!permission.includes(event.senderID)) {
-      message.reply("You don't have enough permission to use this command. Only the owner can do it.");
-      return;
-    }
     const commandName = args[0];
 
     if (!commandName) {
-      return message.reply("Type the file name..");
+      return message.reply("❌ | Please enter a file name..");
     }
 
     const filePath = path.join(__dirname, '..', 'cmds', `${commandName}`);
@@ -33,13 +28,13 @@ module.exports = {
     try {
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
-        message.reply(`✅️|A command file has been deleted ${commandName} .`);
+        message.reply(`✅️ | A command file has been deleted ${commandName} .`);
       } else {
-        message.reply(`command file ${commandName} unavailable.`);
+        message.reply(`❌ | Command file ${commandName} unavailable.`);
       }
     } catch (err) {
       console.error(err);
-      message.reply(`Cannot be deleted because ${commandName}: ${err.message}`);
+      message.reply(`❌ | Cannot be deleted because ${commandName}: ${err.message}`);
     }
   }
 };
